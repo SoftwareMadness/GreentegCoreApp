@@ -1,0 +1,16 @@
+﻿
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="GreentegCoreApp1.CoreView">
+    <ContentPage.Content>
+        <StackLayout BackgroundColor="White">
+            
+            <Frame IsVisible="False" x:Name="DebugBlinkerLED" AnchorX="0" BackgroundColor="Red" WidthRequest="10" HeightRequest="10"></Frame>
+            <Button FontFamily="Lato" Text="Settings" x:Name="SETTTBTN" Clicked="SETTTBTN_Clicked"></Button>
+            <Label FontFamily="Lato" HorizontalOptions="Center" FontSize="Title" Text="00:00" x:Name="TimeLBL" TextColor="Blue"></Label>
+            <Label FontFamily="Lato" Text="" x:Name="DataLBL" FontSize="40" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" TextColor="Green"></Label>
+            <Button FontFamily="Lato" x:Name="Sport_modebtn" Text="Sport" BackgroundColor="Green"></Button>
+            
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

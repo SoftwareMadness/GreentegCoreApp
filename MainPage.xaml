@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<c:CirclePage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:c="clr-namespace:Tizen.Wearable.CircularUI.Forms;assembly=Tizen.Wearable.CircularUI.Forms"
+             x:Class="GreentegCoreApp1.MainPage">
+    <c:CirclePage.Content >
+        <StackLayout BackgroundColor="Black" x:Name="PAGE">
+            <Label FontFamily="Lato" Text="Welcome" VerticalOptions="Start" FontSize="Title" HorizontalOptions="Center"></Label>
+            <Label Text="Lets start" FontSize="Caption" TextColor="White" VerticalOptions="StartAndExpand" HorizontalOptions="Center"></Label>
+            <Picker IsVisible="false" FontFamily="Lato" x:Name="Core_list" Title="Select your core" TitleColor="Green" VerticalOptions="Center" IsEnabled="True"></Picker>
+            <Button IsVisible="true" Text="Scan" x:Name="SCAN" Clicked="SCAN_Clicked"></Button>
+            <Label Text="V 1.0.0 Release" FontSize="Micro" TextColor="Green" HorizontalOptions="Center"></Label>
+            <Button StyleClass="Link" Clicked="Button_Clicked_1" Text="License and Credits"></Button>
+            <Label FontFamily="Lato" IsEnabled="True" x:Name="SCNLBL"></Label>
+            <Label FontFamily="Lato" Text="Release Version" x:Name="ldbg" HorizontalOptions="Center"></Label>
+            <Button FontFamily="Lato" Text="S" x:Name="sdbg"></Button>
+            
+        </StackLayout>
+    </c:CirclePage.Content>
+</c:CirclePage>
