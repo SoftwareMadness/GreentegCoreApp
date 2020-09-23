@@ -5,6 +5,10 @@
 
 ## Bugs (That i have problems with):
 
+## Useful information:
+
+> This software was developed for the Galaxy Watch 46mm
+
 > After each use you need to turn bluetooth off and then back on , if something goes wrong with the scanning process go to the App manager and close the app and turn bluetooth off and then on
 
 
