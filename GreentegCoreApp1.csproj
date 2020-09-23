@@ -11,12 +11,7 @@
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>None</DebugType>
   </PropertyGroup>
-  <PropertyGroup>
-    <AuthorPath>C:\Users\ciesl\SamsungCertificate\Anto2\author.p12</AuthorPath>
-    <AuthorPass>g5t5he5wrdcf_</AuthorPass>
-    <DistributorPath>C:\Users\ciesl\SamsungCertificate\Anto2\distributor.p12</DistributorPath>
-    <DistributorPass>g5t5he5wrdcf_</DistributorPass>
-  </PropertyGroup>
+
   <ItemGroup>
     <None Remove="Lato-Regular.ttf" />
   </ItemGroup>
