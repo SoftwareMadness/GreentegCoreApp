@@ -1,3 +1,5 @@
+# License change now AGPL
+
 # A application for the Greenteg Core
 ## _______________Yaay_______________
 
