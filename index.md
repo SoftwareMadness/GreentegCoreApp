@@ -1,3 +1,6 @@
+# License now AGPL !!!
+
+
 # Core App V1
 #### Get it while you can (:
 
