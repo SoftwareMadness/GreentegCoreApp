@@ -1,3 +1,6 @@
+# A new Tool gets Released （＾ω＾）
+The new Tool GCAWeb gets released connect it to your Watch and look at your temperature over the internet connect your watch to a pc
+
 # License change now AGPL
 
 # A application for the Greenteg Core
