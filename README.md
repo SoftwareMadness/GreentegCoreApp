@@ -1,5 +1,6 @@
-# A new Tool gets Released （＾ω＾）
-The new Tool GCAWeb gets released connect it to your Watch and look at your temperature over the internet connect your watch to a pc
+# A new Verson gets Released （＾ω＾）
+A new Version gets released, in the new V 2.0 you can connect your Watch to a PC record your temperature and access it over the web !
+
 
 # License change now AGPL
 
