@@ -1,6 +1,6 @@
 - v0.1 Base App Framework
- - Basic App with basic Temperature reading algorithm
+    - Basic App with basic Temperature reading algorithm
 - v1 More advanced App
- - Still the basic App with internet connectivity
+    - Still the basic App with internet connectivity
 - v2 Coming soon
- - A working reading algoithm (old one was inaccurate)
+    - A working reading algoithm (old one was inaccurate)
