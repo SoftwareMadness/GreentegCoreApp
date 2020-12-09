@@ -1,3 +1,7 @@
+ # The Algorithm that calculates the temperature does not work correctly
+ I will release a new one . 
+
+
 # A new Verson gets Released （＾ω＾）
 A new Version gets released, in the new V 2.0 you can connect your Watch to a PC record your temperature and access it over the web !
 
