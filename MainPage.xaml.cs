@@ -211,7 +211,7 @@ namespace GreentegCoreApp1
                             if (!devices.Contains(e.DeviceData))
                             {
                                 
-                                Core_list.Items.Add(e.DeviceData.DeviceName.ToLower()+"  "+ (deviceok ? "OK" : "*"));
+                                Core_list.Items.Add(e.DeviceData.RemoteAddress.ToLower()+"  "+ (deviceok ? "OK" : "*"));
                                 found_cores++;
                                 Core_list.Title = "found " + found_cores + "cores";
                                 devices.Add(e.DeviceData);
