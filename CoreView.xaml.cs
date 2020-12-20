@@ -15,6 +15,7 @@ using Tizen.Uix.Tts;
 using Xamarin.Forms;
 using Xamarin.Forms.Platform.Tizen;
 using Xamarin.Forms.Xaml;
+using LibBLEHTP;
 
 namespace GreentegCoreApp1
 {
@@ -91,7 +92,7 @@ namespace GreentegCoreApp1
         async void rec_mode()
         {
             await WaitFlag();
-            ComputeTemp(190);
+            
         }
         void LookWhatYouMadeMeDo(BluetoothLeDevice device)
         {
@@ -114,10 +115,7 @@ namespace GreentegCoreApp1
             }
             try
             {
-                if (Variables.debug_mode)
-                {
-                    ComputeTemp(250);
-                }
+               
             }
             catch { }
         }
@@ -231,7 +229,7 @@ namespace GreentegCoreApp1
             //filesystemX.Write_Temp(e.Value[1]);
             Tizen.Log.Info("CORE", "Core_Val=" + Bytepacker.pack(e.Value));
             //DisplayAlert("OKKKKKK", "OKKKKKKKKKK", "OK");
-            ComputeTemp(e.Value[1]);
+            ComputeTemp(e.Value);
             if (Variables.ServerMode)
             {
                 byte[] data = { e.Value[1] };
@@ -243,19 +241,11 @@ namespace GreentegCoreApp1
                 GC.Collect();
             }
         }
-        void ComputeTemp(byte temp)
+        void ComputeTemp(byte[] temp)
         {
-            double calc = 0;
-            if (Variables.inverse_temp)
-            {
-                calc = offset * (Variables.max_temp_val - temp);
-            }
-            else
-            {
-                calc = offset * temp;
-            }
 
-            float temp_calc = MathF.Round((float)(calc + 20), 1);
+
+            float temp_calc = HTPDecoder.decode(new byte[] { temp[4],temp[3],temp[2],temp[1]});
             //handler.WriteTemp((double)temp_calc);
             this.DataLBL.Text = temp_calc.ToString() + (set.f ? "F°" : "C°");
             if (!sport_enabled && temp_calc > 38)
