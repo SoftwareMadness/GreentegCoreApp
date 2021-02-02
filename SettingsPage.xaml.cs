@@ -14,6 +14,7 @@ namespace GreentegCoreApp1
     {
         BluetoothLeDevice dev = null;
         Settings_t settings;
+        public PcLink link = null;
         public SettingsPage(BluetoothLeDevice devi,ref Settings_t set)
         {
             InitializeComponent();
@@ -34,8 +35,17 @@ namespace GreentegCoreApp1
 
         private void Button_Clicked_1(object sender, EventArgs e)
         {
-            if (dev != null) dev.GattDisconnect();GC.SuppressFinalize(dev);GC.Collect();
+            if (dev != null) dev.GattDisconnect();GC.Collect();
             Application.Current.Quit();
+        }
+
+        private void Button_Clicked_2(object sender, EventArgs e)
+        {
+            if(link == null)
+            {
+                link = new PcLink();
+            }
+            Navigation.PushModalAsync(link);
         }
     }
 }

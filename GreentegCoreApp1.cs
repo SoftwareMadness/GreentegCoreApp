@@ -9,16 +9,26 @@ namespace GreentegCoreApp1
         protected override void OnCreate()
         {
             base.OnCreate();
-
+            try { 
             LoadApplication(new App());
+            }
+            catch (Exception exc)
+            {
+                var app = new App();
+                Errorx ex = new Errorx(exc);
+                app.MainPage = ex;
+                LoadApplication(app);
+            }
         }
 
         static void Main(string[] args)
         {
-            var app = new Program();
-            Forms.Init(app);
-            global::Tizen.Wearable.CircularUI.Forms.Renderer.FormsCircularUI.Init();
-            app.Run(args);
+            
+                var app = new Program();
+                Forms.Init(app);
+                global::Tizen.Wearable.CircularUI.Forms.Renderer.FormsCircularUI.Init();
+                app.Run(args);
+            
         }
     }
 }

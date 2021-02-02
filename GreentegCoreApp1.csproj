@@ -23,7 +23,21 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="BmpSharp" Version="0.2.0" />
     <PackageReference Include="Tizen.Wearable.CircularUI" Version="1.3.2" />
+    <PackageReference Include="ZXing.Net.Mobile" Version="2.4.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="LibBLEHTP">
+      <HintPath>LibBLEHTP.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="PcLink.xaml.cs">
+      <DependentUpon>PcLink.xaml</DependentUpon>
+    </Compile>
   </ItemGroup>
 
   <ItemGroup>
@@ -54,4 +68,3 @@
   </ItemGroup>
 
 </Project>
-

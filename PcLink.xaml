@@ -1,0 +1,11 @@
+﻿
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="GreentegCoreApp1.PcLink">
+    <ContentPage.Content>
+        <StackLayout x:Name="stack">
+            <Button x:Name="strtbtn" Clicked="strtbtn_Clicked" Text="Start"></Button>
+            <Image x:Name="QrCode" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand"></Image>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

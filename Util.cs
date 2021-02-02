@@ -18,9 +18,9 @@ namespace GreentegCoreApp1
         public static bool ServerMode = false;
         public static string ServerIp = "0.0.0.0";
         public static string URL = "http://" + ServerIp + "/req";
-
-        public static bool debug_mode = false;
-        public static bool design_mode = false;
+        public static string BASEPcLinkURL = "http://pclink.gearhostpreview.com";
+        public static bool debug_mode = true;
+        public static bool design_mode = true;
         public static bool inverse_temp = false;
 
 

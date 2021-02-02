@@ -24,6 +24,7 @@ namespace GreentegCoreApp1
     public partial class CoreView : ContentPage
     {
         Settings_t set = new Settings_t();
+        SettingsPage stxpg = null;
         bool started = false;
         double offset = 0.08661417322834646;
         BluetoothLeDevice device = null;
@@ -52,7 +53,7 @@ namespace GreentegCoreApp1
             int time = 30;
             while (!started)
             {
-                Task.Delay(1000);
+                Task.Delay(1);
                 time--;
                 if(time < 0)
                 {
@@ -66,27 +67,40 @@ namespace GreentegCoreApp1
         }
         public CoreView(BluetoothLeDevice device)
         {
-            
-            InitializeComponent();
-            
-            if (Variables.ServerMode)
+            try
             {
-                byte[] data = { 50 };
-                WebRequest request = WebRequest.Create(Variables.URL);
-                request.Method = "POST";
-                request.GetRequestStream().Write(data, 0, data.Length);
-                request.GetRequestStream().Close();
-                GC.SuppressFinalize(request);
-                GC.Collect();
+
+                InitializeComponent();
+                Sport_modebtn.IsVisible = !Variables.debug_mode;
+                gtbtn.IsVisible = Variables.debug_mode;
+                if (Variables.ServerMode)
+                {
+                    byte[] data = { 50 };
+                    WebRequest request = WebRequest.Create(Variables.URL);
+                    request.Method = "POST";
+                    request.GetRequestStream().Write(data, 0, data.Length);
+                    request.GetRequestStream().Close();
+                    GC.SuppressFinalize(request);
+                    GC.Collect();
+                }
+
+                if (device != null)
+                {
+                    //4WaiterX60(   ;
+                    LookWhatYouMadeMeDo(device);
+                }
+                if (Variables.debug_mode) { 
+                    Timer tmr = new Timer(3000);
+                    tmr.AutoReset = true;
+                    tmr.Enabled = true;
+                    tmr.Elapsed += Tmr_Elapsed;
+                    tmr.Start();
+                    DisplayAlert("Info", "Running in debug mode", "OK");
+                }
             }
-            if (device != null)
+            catch(Exception ecx)
             {
-                //4WaiterX60(   ;
-                LookWhatYouMadeMeDo(device);
-            }
-            else
-            {
-                
+                DisplayAlert("Error in Main Loop", ecx.Message, "OK");
             }
         }
         async void rec_mode()
@@ -113,6 +127,10 @@ namespace GreentegCoreApp1
                 //Connect.Clicked += Connect_Clicked;
                 WaiterReaderConnecter();
             }
+            else
+            {
+               
+            }
             try
             {
                
@@ -120,19 +138,14 @@ namespace GreentegCoreApp1
             catch { }
         }
 
+        private void Tmr_Elapsed(object sender, ElapsedEventArgs e)
+        {
+            ComputeTemp(true);
+        }
+
         private void Sport_modebtn_Clicked(object sender, EventArgs e)
         {
-            sport_enabled = !sport_enabled;
-            if (!sport_enabled)
-            {
-                Sport_modebtn.BackgroundColor = Color.Green;
-                
-            }
-            else
-            {
-                Sport_modebtn.BackgroundColor = Color.LightGreen;
-                
-            }
+            
         }
 
         private void Connect_Clicked(object sender, EventArgs e)
@@ -246,6 +259,13 @@ namespace GreentegCoreApp1
 
 
             float temp_calc = HTPDecoder.decode(new byte[] { temp[4],temp[3],temp[2],temp[1]});
+            if (stxpg != null)
+            {
+                if(stxpg.link != null)
+                {
+                    stxpg.link.UpdateTemp(temp_calc);
+                }
+            }
             //handler.WriteTemp((double)temp_calc);
             this.DataLBL.Text = temp_calc.ToString() + (set.f ? "F°" : "C°");
             if (!sport_enabled && temp_calc > 38)
@@ -263,6 +283,37 @@ namespace GreentegCoreApp1
                 this.DataLBL.TextColor = Color.Green;
             }
             
+            GC.Collect();
+        }
+        void ComputeTemp(bool placeholder)
+        {
+
+
+            float temp_calc = 36+((float)new Random().NextDouble() * 3);
+            if (stxpg != null)
+            {
+                if (stxpg.link != null)
+                {
+                    stxpg.link.UpdateTemp(temp_calc);
+                }
+            }
+            //handler.WriteTemp((double)temp_calc);
+            this.DataLBL.Text = temp_calc.ToString() + (set.f ? "F°" : "C°");
+            if (!sport_enabled && temp_calc > 38)
+            {
+                this.DataLBL.TextColor = Color.Red;
+                Panic();
+            }
+            else if (sport_enabled && temp_calc > 40)
+            {
+                this.DataLBL.TextColor = Color.Red;
+                Panic();
+            }
+            else
+            {
+                this.DataLBL.TextColor = Color.Green;
+            }
+
             GC.Collect();
         }
         async void Reader()
@@ -295,7 +346,36 @@ namespace GreentegCoreApp1
         private void SETTTBTN_Clicked(object sender, EventArgs e)
         {
             GC.Collect();
-            Navigation.PushModalAsync(new SettingsPage(device,ref set));
+            if(stxpg == null)
+            {
+                stxpg = new SettingsPage(device, ref set);
+            }
+            Navigation.PushModalAsync(stxpg);
+        }
+
+        private void Button_Clicked(object sender, EventArgs e)
+        {
+
+        }
+
+        private void gtbtn_Clicked(object sender, EventArgs e)
+        {
+            ComputeTemp(true);
+        }
+
+        private void Sport_modebtn_Clicked_1(object sender, EventArgs e)
+        {
+            sport_enabled = !sport_enabled;
+            if (!sport_enabled)
+            {
+                Sport_modebtn.BackgroundColor = Color.Green;
+
+            }
+            else
+            {
+                Sport_modebtn.BackgroundColor = Color.LightGreen;
+
+            }
         }
     }
 }

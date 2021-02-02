@@ -21,6 +21,7 @@ namespace GreentegCoreApp1
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class MainPage : CirclePage
     {
+        public bool devmode = true;
         public Exception exc = null;
        public event EventHandler started_core;
         List<BluetoothLeDevice> asked_devices = new List<BluetoothLeDevice>();
@@ -58,11 +59,13 @@ namespace GreentegCoreApp1
             if (Variables.debug_mode)
             {
                 sdbg.Clicked += Sdbg_Clicked;
+                SCAN.IsVisible = false;
             }
             else
             {
                 sdbg.IsVisible = false;
                 sdbg.IsEnabled = false;
+                
             } 
 
 
