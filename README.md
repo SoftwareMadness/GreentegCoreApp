@@ -1,3 +1,14 @@
+ # News
+ 
+ # Use another server for PcLink
+ A new Feature is here, let's welcome PcLink.
+ Simply scan the QrCode on the Watch Settings->PCLink and you can see the temperature.
+ To buffer the temperature click Settings-PcLink and go back to the main Core Screen.
+ You can go to the QrCode again and the whole Temperature history will be there, it will be recorded on the server.
+ ## Use your own server.
+ The test server dosent really have a PrivayPolicy and is only a test server, dont use it.
+ The server software is under the GCAPcLink repository
+ 
  # The Algorithm that calculates the temperature does not work correctly
  I will release a new one . 
 
