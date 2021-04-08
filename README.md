@@ -1,5 +1,7 @@
  # News
  
+ ## Simple compile script under https://github.com/AnthonyOpenSource/greentegCoreAppBuildScript
+ 
  # Use another server for PcLink
  A new Feature is here, let's welcome PcLink.
  Simply scan the QrCode on the Watch Settings->PCLink and you can see the temperature.
