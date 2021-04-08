@@ -1,4 +1,3 @@
-﻿using BmpSharp;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -9,11 +8,6 @@ using System.Threading.Tasks;
 
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
-
-using ZXing.QrCode;
-using ZXing.Mobile;
-using ZXing.Rendering;
-using ZXing;
 
 namespace GreentegCoreApp1
 {
