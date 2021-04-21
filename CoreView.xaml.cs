@@ -71,8 +71,9 @@ namespace GreentegCoreApp1
             {
 
                 InitializeComponent();
-                Sport_modebtn.IsVisible = !Variables.debug_mode;
-                gtbtn.IsVisible = Variables.debug_mode;
+                Sport_modebtn.IsVisible = true;//!Variables.debug_mode;
+                gtbtn.IsVisible = false;
+                //gtbtn.IsVisible = Variables.debug_mode;
                 if (Variables.ServerMode)
                 {
                     byte[] data = { 50 };
@@ -95,12 +96,16 @@ namespace GreentegCoreApp1
                     tmr.Enabled = true;
                     tmr.Elapsed += Tmr_Elapsed;
                     tmr.Start();
-                    DisplayAlert("Info", "Running in debug mode", "OK");
+                    //DisplayAlert("Info", "Running in debug mode", "OK");
                 }
             }
             catch(Exception ecx)
             {
                 DisplayAlert("Error in Main Loop", ecx.Message, "OK");
+            }
+            if(device == null)
+            {
+                ComputeTemp(true);
             }
         }
         async void rec_mode()

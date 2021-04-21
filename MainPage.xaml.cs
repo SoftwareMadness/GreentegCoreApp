@@ -47,6 +47,23 @@ namespace GreentegCoreApp1
             }
         }
 
+        private async void StartAnimation()
+        {
+   
+            while (true)
+            {
+                for (int i = 0; i < 200; i++)
+                {
+                    PAGE.BackgroundColor = new Color(0, ((double)i) / 200, 0);
+                    await Task.Delay(2000 / 200);
+                }
+                for (int i = 200; i >= 0; i--)
+                {
+                    PAGE.BackgroundColor = new Color(0, ((double)i)/200, 0);
+                    await Task.Delay(2000 / 200);
+                }
+            }
+        }
         public MainPage()
         {
 
@@ -58,17 +75,19 @@ namespace GreentegCoreApp1
 
             if (Variables.debug_mode)
             {
-                sdbg.Clicked += Sdbg_Clicked;
-                SCAN.IsVisible = false;
+                /*sdbg.Clicked += Sdbg_Clicked;
+                SCAN.IsVisible = false;*/
+                devices.Add(null);
+                Core_list.Items.Add("Test Device");
             }
             else
             {
                 sdbg.IsVisible = false;
                 sdbg.IsEnabled = false;
                 
-            } 
+            }
 
-
+            StartAnimation();
         }
         
 
@@ -263,31 +282,39 @@ namespace GreentegCoreApp1
 
         private void SCAN_Clicked(object sender, EventArgs e)
         {
-            SCAN.IsVisible = false;
-            Core_list.IsVisible = true;
-            GC.Collect();
-            found_cores = 0;
-            if (!Variables.record_mode)
-            {
-                Status = "Scanning";
-                BluetoothAdapter.ScanResultChanged += BluetoothAdapter_ScanResultChanged;
-                BluetoothAdapter.StartLeScan();
-                //Status = "Started";
-                BluetoothAdapter.StateChanged += BluetoothAdapter_StateChanged1;
+            if (!Variables.debug_mode) {
+                SCAN.IsVisible = false;
+                Core_list.IsVisible = true;
+                GC.Collect();
+                found_cores = 0;
+                if (!Variables.record_mode)
+                {
+                    Status = "Scanning";
+                    BluetoothAdapter.ScanResultChanged += BluetoothAdapter_ScanResultChanged;
+                    BluetoothAdapter.StartLeScan();
+                    //Status = "Started";
+                    BluetoothAdapter.StateChanged += BluetoothAdapter_StateChanged1;
 
-                Device = null;
-                //SBTN.Clicked += SBTN_Clicked;
-                ldbg.IsVisible = Variables.debug_mode;
-                Core_list.SelectedIndexChanged += Core_list_SelectedIndexChanged;
+                    Device = null;
+                    //SBTN.Clicked += SBTN_Clicked;
+                    //ldbg.IsVisible = Variables.debug_mode;
+                    Core_list.SelectedIndexChanged += Core_list_SelectedIndexChanged;
 
+                }
+                else
+                {
+                    Core_list.SelectedIndexChanged += Core_list_vdm_SelectedIndexChanged;
+                    Core_list.Items.Add(Variables.record_mode_core_name);
+                    sdbg.IsEnabled = false;
+                    sdbg.IsVisible = false;
+                    //this.ldbg.Text = "Record mode";
+                }
             }
             else
             {
+                SCAN.IsVisible = false;
                 Core_list.SelectedIndexChanged += Core_list_vdm_SelectedIndexChanged;
-                Core_list.Items.Add(Variables.record_mode_core_name);
-                sdbg.IsEnabled = false;
-                sdbg.IsVisible = false;
-                this.ldbg.Text = "Record mode";
+                Core_list.IsVisible = true;
             }
         }
 

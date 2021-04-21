@@ -4,16 +4,16 @@
              xmlns:c="clr-namespace:Tizen.Wearable.CircularUI.Forms;assembly=Tizen.Wearable.CircularUI.Forms"
              x:Class="GreentegCoreApp1.MainPage">
     <c:CirclePage.Content >
-        <StackLayout BackgroundColor="Black" x:Name="PAGE">
-            <Label FontFamily="Lato" Text="Welcome" VerticalOptions="Start" FontSize="Title" HorizontalOptions="Center"></Label>
+        <StackLayout x:Name="PAGE">
+            
+            <Label FontFamily="Lato" Text="Welcome" VerticalOptions="Start" FontSize="Title" HorizontalOptions="Center" Margin="0,20,0,0"></Label>
             <Label Text="Lets start" FontSize="Caption" TextColor="White" VerticalOptions="StartAndExpand" HorizontalOptions="Center"></Label>
-            <Picker IsVisible="false" FontFamily="Lato" x:Name="Core_list" Title="Select your core" TitleColor="Green" VerticalOptions="Center" IsEnabled="True"></Picker>
-            <Button IsVisible="true" Text="Scan" x:Name="SCAN" Clicked="SCAN_Clicked"></Button>
-            <Label Text="V 1.0.0 Release" FontSize="Micro" TextColor="Green" HorizontalOptions="Center"></Label>
-            <Button StyleClass="Link" Clicked="Button_Clicked_1" Text="License and Credits"></Button>
+            <Picker IsVisible="false" FontFamily="Lato" x:Name="Core_list" Title="Select your core" TitleColor="Green" BackgroundColor="White" VerticalOptions="Center" IsEnabled="True" ></Picker>
+            <Button IsVisible="true" VerticalOptions="CenterAndExpand" Text="Scan" x:Name="SCAN" Clicked="SCAN_Clicked" CornerRadius="100"></Button>
+            <Label Text="V 2.0.0 Release" FontSize="Micro" TextColor="Blue" HorizontalOptions="Center"></Label>
+            <Button StyleClass="Link" Clicked="Button_Clicked_1" Text="How to ?" IsVisible="false"></Button>
             <Label FontFamily="Lato" IsEnabled="True" x:Name="SCNLBL"></Label>
-            <Label FontFamily="Lato" Text="Release Version" x:Name="ldbg" HorizontalOptions="Center"></Label>
-            <Button FontFamily="Lato" Text="S" x:Name="sdbg"></Button>
+            <Button FontFamily="Lato" Text="S" x:Name="sdbg" IsVisible="false"></Button>
             
         </StackLayout>
     </c:CirclePage.Content>

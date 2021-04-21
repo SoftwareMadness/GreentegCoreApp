@@ -4,11 +4,6 @@
              x:Class="GreentegCoreApp1.SettingsPage">
     <ContentPage.Content>
         <StackLayout>
-            <AbsoluteLayout HorizontalOptions="Center">
-                <Label HorizontalOptions="Start" Text="F°     " ></Label>
-                <Switch x:Name="CORF" HorizontalOptions="End"></Switch>
-                 
-            </AbsoluteLayout>
             <Button Text="Close" Clicked="Button_Clicked_1"></Button>
             <Button HorizontalOptions="Center" VerticalOptions="End" Text="Back" Clicked="Button_Clicked"></Button>
             <Button Clicked="Button_Clicked_2" Text="PcLink"></Button>

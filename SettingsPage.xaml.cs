@@ -19,7 +19,6 @@ namespace GreentegCoreApp1
         {
             InitializeComponent();
             settings = set;
-            CORF.IsToggled = set.f;
             
         }
 
