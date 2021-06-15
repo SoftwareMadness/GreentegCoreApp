@@ -1,6 +1,6 @@
 # PCLink !!!
 ## Wanna see your Temperature over the Internet ?
-Yes.
+### Yes.
 ## Ok you can connect to the Server by scanning the QR-Code <sup>(That dosent even fit on the screen)</sup> on the Watch.
 
 # License now AGPL !!!
