@@ -1,10 +1,12 @@
-# A new Tool gets Released （＾ω＾）
-The new Tool GCAWeb gets released connect it to your Watch and look at your temperature over the internet connect your watch to a pc
+# PCLink !!!
+## Wanna see your Temperature over the Internet ?
+Yes.
+## Ok you can connect to the Server by scanning the QR-Code <sup>(That dosent even fit on the screen)</sup> on the Watch.
 
 # License now AGPL !!!
 
 
-# Core App V1
+# Core App V2
 #### Get it while you can (:
 
 # Useful links:
@@ -17,6 +19,6 @@ The new Tool GCAWeb gets released connect it to your Watch and look at your temp
 [Get the zip](/AnthonyOpenSource/GreentegCoreApp/archive/1.0.zip "Get the zip")
 
 
-&copy;Puppyware
+&copy;AnthonyMakesStuff 2020-2021
 
 [Go to the Timeline](/timeline.md)
