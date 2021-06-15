@@ -1,8 +1,8 @@
  # News
  
- ## GreentegCoreApp 3 will be released
- There is a new version of GreentegCoreApp being worked on Change Notes:
- ** Working F° and C° Switch.
+ # GreentegCoreApp 3 will be released
+ ## There is a new version of GreentegCoreApp being worked on Change Notes:
+⚫ Working F° and C° Switch.
  
  ## Simple compile script under https://github.com/AnthonyOpenSource/greentegCoreAppBuildScript
  
