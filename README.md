@@ -1,8 +1,17 @@
+ # License Changes (in file NOTICE)
+ ## The software license may change over time
+ ## I'm not liable for your problems with this software
+ ## Corebodytemp is a trademark of Greenteg
+ 
  # News
  
  # GreentegCoreApp 3 will be released
  ## There is a new version of GreentegCoreApp being worked on Change Notes:
 ⚫ Working F° and C° Switch.
+⚫ Update from .NET 4 to .NET 6
+⚫ Working PCLink
+⚫ Faster device detection
+⚫ Better UI
  
  ## Simple compile script under https://github.com/AnthonyOpenSource/greentegCoreAppBuildScript
  
