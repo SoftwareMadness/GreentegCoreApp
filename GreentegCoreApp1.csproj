@@ -64,10 +64,5 @@
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
   </ItemGroup>
-  <PropertyGroup>
-    <AuthorPath>C:\Users\ciesl\SamsungCertificate\TestWatch\author.p12</AuthorPath>
-    <AuthorPass>TestWatch22</AuthorPass>
-    <DistributorPath>C:\Users\ciesl\SamsungCertificate\TestWatch\distributor.p12</DistributorPath>
-    <DistributorPass>TestWatch22</DistributorPass>
-  </PropertyGroup>
+
 </Project>
