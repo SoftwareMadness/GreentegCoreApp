@@ -11,6 +11,7 @@
             <Label FontFamily="Lato" Text="" x:Name="DataLBL" FontSize="40" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" TextColor="Green"></Label>
             <Button IsVisible="True" FontFamily="Lato" x:Name="Sport_modebtn" Text="Sport" Clicked="Sport_modebtn_Clicked_1" BackgroundColor="Green"></Button>
             <Button Text="Gentemp" x:Name="gtbtn" Clicked="gtbtn_Clicked" IsVisible="False"></Button>
+            
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

@@ -14,7 +14,7 @@
             <Button StyleClass="Link" Clicked="Button_Clicked_1" Text="How to ?" IsVisible="false"></Button>
             <Label FontFamily="Lato" IsEnabled="True" x:Name="SCNLBL"></Label>
             <Button FontFamily="Lato" Text="S" x:Name="sdbg" IsVisible="false"></Button>
-            
+            <ActivityIndicator IsVisible="False" x:Name="PRG_BR" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" BackgroundColor="White" Color="Tan" IsRunning="True"></ActivityIndicator>
         </StackLayout>
     </c:CirclePage.Content>
 </c:CirclePage>

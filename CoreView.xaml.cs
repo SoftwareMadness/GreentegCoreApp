@@ -23,15 +23,17 @@ namespace GreentegCoreApp1
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class CoreView : ContentPage
     {
+        SharedStructBetweenPages s;
         Settings_t set = new Settings_t();
         SettingsPage stxpg = null;
         bool started = false;
         double offset = 0.08661417322834646;
-        BluetoothLeDevice device = null;
         BluetoothGattClient client = null;
         Vibrator vibr = null;
         bool sport_enabled = false;
-        BluetoothGattCharacteristic characteristic = null;
+        public BluetoothGattCharacteristic characteristic = null;
+        BluetoothGattCharacteristic battery_chara = null;
+        
         int servicesl = 0;
         bool farenheit = false;
         List<BluetoothGattService> services = new List<BluetoothGattService>();
@@ -65,12 +67,25 @@ namespace GreentegCoreApp1
                 }
             }
         }
-        public CoreView(BluetoothLeDevice device)
+       
+        
+
+        public CoreView(BluetoothGattClient device, SharedStructBetweenPages ss)
         {
+            s = ss;
+            s.device = device;
+          
             try
             {
 
                 InitializeComponent();
+                tmr = new Timer();
+                tmr.Interval = 1000;
+                tmr.Enabled = true;
+                tmr.AutoReset = true;
+                
+                tmr.Elapsed += TMR_INTV;
+                tmr.Start();
                 Sport_modebtn.IsVisible = true;//!Variables.debug_mode;
                 gtbtn.IsVisible = false;
                 //gtbtn.IsVisible = Variables.debug_mode;
@@ -88,7 +103,19 @@ namespace GreentegCoreApp1
                 if (device != null)
                 {
                     //4WaiterX60(   ;
-                    LookWhatYouMadeMeDo(device);
+                    //LookWhatYouMadeMeDo(device);
+                    client = device;
+
+                    services.Add(client.GetService(Variables.serviceuuid_start));
+                    //services.Add(client.GetService(Variables.batteryserviceuuid));
+                    characteristic = client.GetService(Variables.serviceuuid_start).GetCharacteristic(Variables.characteristicuuid_start);
+                    //battery_chara = services[1].GetCharacteristic(Variables.batterycharacteristicuuid);
+                    //battery_chara.GetValue(0);
+                    //throw new Exception(Bytepacker.pack(battery_chara.Value));
+                    characteristic.ValueChanged += Characteristic_ValueChanged;
+                    this.DataLBL.Text = "Loading...";
+                    ComputeTemp(characteristic.Value);
+                    //tmr.Start();
                 }
                 if (Variables.debug_mode) { 
                     Timer tmr = new Timer(3000);
@@ -113,36 +140,6 @@ namespace GreentegCoreApp1
             await WaitFlag();
             
         }
-        void LookWhatYouMadeMeDo(BluetoothLeDevice device)
-        {
-            tmr = new Timer(1000);
-            tmr.Elapsed += TMR_INTV;
-            tmr.Start();
-            Sport_modebtn.Clicked += Sport_modebtn_Clicked;
-            try
-            {
-                vibr = Vibrator.Vibrators.FirstOrDefault();
-            }
-            catch { }
-
-            if (device != null)
-            {
-                this.device = device;
-                client = device.GattConnect(false);
-                //Connect.Clicked += Connect_Clicked;
-                WaiterReaderConnecter();
-            }
-            else
-            {
-               
-            }
-            try
-            {
-               
-            }
-            catch { }
-        }
-
         private void Tmr_Elapsed(object sender, ElapsedEventArgs e)
         {
             ComputeTemp(true);
@@ -232,8 +229,8 @@ namespace GreentegCoreApp1
             {
                 if (!started)
                 {
-                    device.GattDisconnect();
-                    LookWhatYouMadeMeDo(device);
+                    //client.DisconnectAsync().Wait();
+                    //LookWhatYouMadeMeDo(device);
                 }
             }
             catch(Exception ex) { DisplayAlert("Error", ex.ToString(),"OK"); }
@@ -259,10 +256,10 @@ namespace GreentegCoreApp1
                 GC.Collect();
             }
         }
-        void ComputeTemp(byte[] temp)
+        public void ComputeTemp(byte[] temp)
         {
 
-
+            this.DataLBL.FontSize = 20;
             float temp_calc = HTPDecoder.decode(new byte[] { temp[4],temp[3],temp[2],temp[1]});
             if (stxpg != null)
             {
@@ -272,7 +269,12 @@ namespace GreentegCoreApp1
                 }
             }
             //handler.WriteTemp((double)temp_calc);
-            this.DataLBL.Text = temp_calc.ToString() + (set.f ? "F°" : "C°");
+            float disptemp = temp_calc;
+            if (Preference.Get<bool>("IsFarenheit"))
+            {
+                disptemp = ((temp_calc*9)/5)+32;
+            }
+            this.DataLBL.Text = disptemp.ToString() + (Preference.Get<bool>("IsFarenheit") ? "F°" : "C°");
             if (!sport_enabled && temp_calc > 38)
             {
                 this.DataLBL.TextColor = Color.Red;
@@ -293,7 +295,7 @@ namespace GreentegCoreApp1
         void ComputeTemp(bool placeholder)
         {
 
-
+            this.DataLBL.FontSize = 20;
             float temp_calc = 36+((float)new Random().NextDouble() * 3);
             if (stxpg != null)
             {
@@ -303,7 +305,11 @@ namespace GreentegCoreApp1
                 }
             }
             //handler.WriteTemp((double)temp_calc);
-            this.DataLBL.Text = temp_calc.ToString() + (set.f ? "F°" : "C°");
+            if(Preference.Get<bool>("IsFarenheit"))
+            {
+                temp_calc = temp_calc * (9 / 5);
+            }
+            this.DataLBL.Text = temp_calc.ToString() + (Preference.Get<bool>("IsFarenheit") ? "F°" : "C°");
             if (!sport_enabled && temp_calc > 38)
             {
                 this.DataLBL.TextColor = Color.Red;
@@ -344,8 +350,8 @@ namespace GreentegCoreApp1
         private void Disconnect_Clicked(object sender, EventArgs e)
         {
             GC.Collect();
-            device.GattDisconnect();
-            device = null;
+            client.DisconnectAsync().Wait();
+            DisplayAlert("Disconnected", "", "OK");
         }
 
         private void SETTTBTN_Clicked(object sender, EventArgs e)
@@ -353,7 +359,7 @@ namespace GreentegCoreApp1
             GC.Collect();
             if(stxpg == null)
             {
-                stxpg = new SettingsPage(device, ref set);
+                stxpg = new SettingsPage(client, ref set,this);
             }
             Navigation.PushModalAsync(stxpg);
         }
@@ -381,6 +387,7 @@ namespace GreentegCoreApp1
                 Sport_modebtn.BackgroundColor = Color.LightGreen;
 
             }
+            ComputeTemp(characteristic.Value);
         }
     }
 }

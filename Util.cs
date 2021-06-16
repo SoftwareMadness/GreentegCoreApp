@@ -8,6 +8,8 @@ namespace GreentegCoreApp1
 {
     static class Variables
     {
+        public static string batteryserviceuuid = "0000180f-0000-1000-8000-00805f9b34fb";
+        public static string batterycharacteristicuuid = "00002a19-0000-1000-8000-00805f9b34fb";
         public static bool auto_panic = debug_mode;
         public static int from_temp = 20;
         public static int to_temp = 42;
@@ -18,7 +20,7 @@ namespace GreentegCoreApp1
         public static bool ServerMode = false;
         public static string ServerIp = "0.0.0.0";
         public static string URL = "http://" + ServerIp + "/req";
-        public static string BASEPcLinkURL = "pclink.gearhostpreview.com";  //Use other Server...
+        public static string BASEPcLinkURL = "http://192.168.93.177:5678";  //Use other Server...
         public static bool debug_mode = false;
         public static bool design_mode = false;
         public static bool inverse_temp = false;

@@ -7,6 +7,7 @@
             <Button Text="Close" Clicked="Button_Clicked_1"></Button>
             <Button HorizontalOptions="Center" VerticalOptions="End" Text="Back" Clicked="Button_Clicked"></Button>
             <Button Clicked="Button_Clicked_2" Text="PcLink"></Button>
+            <Switch x:Name="CORF" VerticalOptions="CenterAndExpand"></Switch>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

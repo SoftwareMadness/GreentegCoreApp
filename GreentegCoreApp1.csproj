@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <OutputType>Exe</OutputType>
-    <TargetFramework>tizen40</TargetFramework>
+    <TargetFramework>tizen90</TargetFramework>
   </PropertyGroup>
 
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
@@ -23,9 +23,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="BmpSharp" Version="0.2.0" />
     <PackageReference Include="Tizen.Wearable.CircularUI" Version="1.3.2" />
-    <PackageReference Include="ZXing.Net.Mobile" Version="2.4.1" />
   </ItemGroup>
 
   <ItemGroup>
@@ -66,5 +64,10 @@
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
   </ItemGroup>
-
+  <PropertyGroup>
+    <AuthorPath>C:\Users\ciesl\SamsungCertificate\TestWatch\author.p12</AuthorPath>
+    <AuthorPass>TestWatch22</AuthorPass>
+    <DistributorPath>C:\Users\ciesl\SamsungCertificate\TestWatch\distributor.p12</DistributorPath>
+    <DistributorPass>TestWatch22</DistributorPass>
+  </PropertyGroup>
 </Project>

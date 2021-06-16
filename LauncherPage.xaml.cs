@@ -16,7 +16,7 @@ namespace GreentegCoreApp1
         public LauncherPage()
         {
             InitializeComponent();
-            MainPage page = new MainPage();
+            MainPage page = new MainPage(null);
             try
             {
                 SettingsManager.Default();

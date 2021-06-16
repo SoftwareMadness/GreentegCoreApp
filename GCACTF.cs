@@ -13,30 +13,19 @@ namespace GreentegCoreApp1
         {
          
                 string outdata = "";
-                try
+                if(!string.IsNullOrEmpty(indata))
+            {
+                float flt = 0;
+                if(float.TryParse(indata,out flt)&&flt != temperature)
                 {
-                if (!string.IsNullOrEmpty(indata))
-                {
-                    outdata = indata.Split("&")[1];
-                    if (float.Parse(indata.Split(';').Last().Split(',')[1]) != temperature)
-                    {
-                        outdata += time.ToString("yyyy/M/dd-HH:m:s") + "," + temperature.ToString() + ";";
-                    }
-                    outdata = temperature.ToString() + outdata;
-                    return outdata;
+                    outdata += time.ToString("yyyy/M/dd-HH:m:s") + "," + temperature.ToString() + ";";
                 }
                 else
                 {
                     outdata = temperature.ToString() + "&" + time.ToString("yyyy/M/dd-HH:m:s") + "," + temperature.ToString() + ";";
-                    return outdata;
                 }
-                }
-                catch(Exception ex)
-                {
-                Log.Info("GCACTFEncoder Error", ex.Message);
-                    outdata = temperature.ToString() + "&" + time.ToString("yyyy/M/dd-HH:m:s") + "," + temperature.ToString() + ";";
-                    return outdata;
-                }
+            }
+            return outdata;
      
         }
     }
